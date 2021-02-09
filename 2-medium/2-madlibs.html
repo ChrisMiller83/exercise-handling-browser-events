@@ -15,9 +15,40 @@
       <br>
       <input type="text" name="animal" id="animal">
     </p>
-    <button type="submit">Do the MadLib!</button>
+    <p class="form-group">
+      <label for="country">Country</label>
+      <br>
+      <input type="text" name="country" id="country">
+    </p>
+    <p class="form-group">
+      <label for="pluralNoun">Plural Noun</label>
+      <br>
+      <input type="text" name="pluralNoun" id="pluralNoun">
+    </p>
+    <p class="form-group">
+      <label for="food">Food</label>
+      <br>
+      <input type="text" name="food" id="food">
+    </p>
+    <p class="form-group">
+      <label for="device">Device</label>
+      <br>
+      <input type="text" name="device" id="device">
+    </p>
+    <p class="form-group">
+      <label for="noun">Noun</label>
+      <br>
+      <input type="text" name="noun" id="noun">
+    </p>
+    <p class="form-group">
+      <label for="adjective">Adjective</label>
+      <br>
+      <input type="text" name="adjective" id="adjective">
+    </p>
+    <button type="submit" id="submitButton">Do the MadLib!</button>
   </form>
   
+
   <div id="madLibStory" style="display: none">
     <h2>Nature Show</h2>
     <p>
@@ -40,6 +71,50 @@
 
   <script>
     // JavaScript goes here
+    
+    // find button
+    const submitButton = document.querySelector('#submitButton');
+    const story = document.querySelector('#madLibStory');
+    const form = document.querySelector('#madLibForm');
+    
+    function updatePlaceholder(id) {
+      const input = document.getElementById(id)
+      const placeholders = document.getElementsByClassName(id)
+      for (let index = 0; index < placeholders.length; index++) {
+        const placeholder = placeholders[index];
+        placeholder.innerText = input.value;
+      }
+    }
+    // add event listener to button
+    submitButton.addEventListener('click', function(event){
+      event.preventDefault();
+      console.log('submit!')
+      
+      // show story
+      story.style.display = 'block';
+      
+      // hide form
+      form.style.display = 'none';
+      
+      updatePlaceholder('animal')
+      updatePlaceholder('country')
+      updatePlaceholder('pluralNoun')
+      updatePlaceholder('food')
+      updatePlaceholder('device')
+      updatePlaceholder('noun')
+      updatePlaceholder('adjective')
+    })
+
+      // find the restart button
+      const restartButton = document.querySelector('#restart');
+      // add event listener
+      restartButton.addEventListener('click', function(){
+        // hide story defined on line 46
+        story.style.display = 'none'
+        // show form defined on line 47
+        form.style.display = 'block';
+        form.reset();
+      })
 
   </script>
 </body>

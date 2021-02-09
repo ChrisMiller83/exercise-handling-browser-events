@@ -3,29 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MadLib</title>
+  <title>Shopping List</title>
 </head>
 <body>
   <!-- HTML goes here -->
   <h1>Things to Buy</h1>
 
-  <ul id="shoppingList">
+  <ol id="shoppingList">
     <li>Waffles</li>
     <li>Pancakes</li>
     <li>Bacon</li>
     <li>Eggs</li>
-  </ul>
+  </ol>
 
   <form id="newItem">
-    <label for="item">Add New Item</label>
+    <label for="item">Add or Remove Item</label>
     <br>
     <input type="text" name="item" id="item">
-    <button type="submit">Add</button>
+    <button type="submit" id="submitButton">Add Item</button>
+    <button type="delete" id="removeItem">Remove Item</button>
   </form>
 
   <script>
     // JavaScript goes here
+    let list = document.getElementById("shoppingList");
+    const button = document.getElementById("submitButton");
+    let input = document.getElementById("item");
+    const removeButton = document.getElementById("removeItem");
     
+    function addItem(event){
+      event.preventDefault();
+      let newItem = document.createElement("li");
+      newItem.innerText = input.value;
+      list.appendChild(newItem);
+      input.value = "";      
+    }
+    
+    button.addEventListener("click", addItem);
+    
+    function removeItem(event) {
+      event.preventDefault()
+      const items = document.querySelectorAll("li");
+      const index = input.value - 1;
+      items[index].remove();
+      input.value = "";
+
+      
+    }
+    
+    removeButton.addEventListener("click", removeItem);
+      
+      
   </script>
 </body>
 </html>
